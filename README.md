@@ -17,7 +17,7 @@ The application uses code from `AVFoundation` to record sounds from the micropho
 
 ## Requirements
 
- - Xcode 1
+ - Xcode 11
  - Swift 5
 
 ## License
