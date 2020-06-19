@@ -23,10 +23,14 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func stopRecording(_ sender: Any) {
-        recordButton.isEnabled = true
-        stopRecordingButton.isEnabled = false
-        recordingLabel.text = "Tap to Record"
+        configureRecordingLabelAndButton(isRecording: false)
         audioRecorder.stop()
+    }
+    
+    func configureRecordingLabelAndButton(isRecording: Bool) {
+        recordButton.isEnabled = !isRecording // to enable the button
+        stopRecordingButton.isEnabled = isRecording // to disable the button
+        recordingLabel.text = !isRecording ? "Tap to Record" : "Recording in Progress"
     }
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
@@ -46,9 +50,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     @IBAction func recordAudio(_ sender: Any) {
-        recordingLabel.text = "Recording in Progress"
-        stopRecordingButton.isEnabled = true
-        recordButton.isEnabled = false
+        configureRecordingLabelAndButton(isRecording: true)
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask, true)[0] as String
         let recordingName = "recordedVoice.wav"
