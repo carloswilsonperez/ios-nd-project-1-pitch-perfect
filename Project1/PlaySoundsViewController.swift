@@ -66,6 +66,10 @@ class PlaySoundsViewController: UIViewController {
         setupAudio()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        stopAudio()
+    }
+    
     func setContentMode() {
         snailButton.imageView?.contentMode = .scaleAspectFit
         chipmunkButton.imageView?.contentMode = .scaleAspectFit
